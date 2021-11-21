@@ -4,6 +4,39 @@ import time
 import random
 pygame.init()
 
+class Window():
+    def __init__(self):
+        #Setting up window
+        self.WIDTH = 1000
+        self.HEIGHT = 1000
+        self.WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
+        pygame.display.set_caption("Turn based strategy game")
+
+class Assets():
+    def __init__(self):
+        # Setting up images
+        self.RedCircleImage = pygame.image.load(
+            os.path.join(
+                "assets",
+                "RedCircleImage.png"
+            )
+        )
+        self.BGImage = pygame.transform.scale(
+            pygame.image.load(
+                os.path.join(
+                    "assets",
+                    "BGImage.png"
+                )
+            ),
+            (WIDTH, HEIGHT)
+        )
+        self.BaseImage = pygame.image.load(
+            os.path.join(
+                "assets",
+                "BaseImage.png"
+            )
+        )
+
 #Setting up window
 WIDTH, HEIGHT = 1000, 1000
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -33,7 +66,9 @@ BaseImage = pygame.image.load(
 )
 
 class Game:
-    def __init__(self):
+    def __init__(self, window, assets):
+        self.window = window
+        self.assets = assets
         self.run = True
         self.lost = False
         self.toDraw= []
@@ -42,9 +77,9 @@ class Game:
         self.infoFont = pygame.font.SysFont("arial", 20)
 
     def drawFrame(self):
-        WINDOW.blit(BGImage, (0,0))
+        self.window.WINDOW.blit(self.assets.BGImage, (0,0))
         for item in self.toDraw:
-            WINDOW.blit(item.image, (item.x, item.y))
+            self.window.WINDOW.blit(item.image, (item.x, item.y))
         pygame.display.update()
 
     def takeInputs(self):
@@ -112,7 +147,9 @@ class MouseClick(GameObject):
             if self.mask.overlap(item.mask, (overlapX, overlapY)) and type(item) != type(self):
                 item.onClick()
 
-game = Game()
+window = Window()
+assets = Assets()
+game = Game(window, assets)
 mouseClick = MouseClick(-10, -10, 15, 15, RedCircleImage)
 base = Base(WIDTH/2, HEIGHT/2, 50, 50, BaseImage)
 game.toDraw.append(mouseClick)
