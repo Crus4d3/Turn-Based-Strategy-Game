@@ -3,9 +3,9 @@ import pygame
 class Window():
     def __init__(self):
         #Setting up window
-        self.WIDTH = 1000
-        self.HEIGHT = 1000
-        self.WINDOW = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
+        self.width = 1000
+        self.height = 1000
+        self.WINDOW = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Turn based strategy game")
 
     def drawFrame(self, game):

@@ -17,11 +17,17 @@ class Assets():
                     "BGImage.png"
                 )
             ),
-            (window.WIDTH, window.HEIGHT)
+            (window.width, window.height)
         )
         self.BaseImage = pygame.image.load(
             os.path.join(
                 "assets",
                 "BaseImage.png"
+            )
+        )
+        self.MenuIconImage = pygame.image.load(
+            os.path.join(
+                "assets",
+                "MenuIconImage.png"
             )
         )

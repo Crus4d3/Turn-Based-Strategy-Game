@@ -1,6 +1,7 @@
 import pygame
 
 from infoBox import InfoBox
+from menuIcon import MenuIcon
 
 class Game:
     def __init__(self, window, assets):
@@ -20,7 +21,7 @@ class Game:
 
     def removeInfoBox(self):
         for item in self.toDraw:
-            if isinstance(item, InfoBox):
+            if isinstance(item, InfoBox) or isinstance(item, MenuIcon):
                 item.removeFromToDraw()
 
     def main(self):

@@ -21,10 +21,11 @@ def main():
     assets = Assets(window)
     game = Game(window, assets)
     mouseClick = MouseClick(-10, -10, 15, 15, assets, game)
-    base = Base(window.WIDTH/2, window.HEIGHT/2, 50, 50, assets, game)
-    menuIcon = MenuIcon(0, window.WIDTH - 50, 50, 50, assets, game)
+    base = Base(window.width/2, window.height/2, 50, 50, assets, game)
+    menuIcon = MenuIcon(0, window.width - 50, 50, 50, assets, game, False)
     # Setting variables
     game.mouseClick = mouseClick
+    base.window = window
     # Starting game
     game.toDraw = [mouseClick, base, menuIcon]
     game.mainMenu()
