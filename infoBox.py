@@ -14,10 +14,10 @@ class InfoBox(GameObject):
             self.image,
             game
         )
-        self.mask = pygame.mask.from_surface(self.image)
+        self.y -= self.height + 10 # Buffer zone to make things more readable
         game.toDraw.append(self)
-        startTime = time.time()
-        print(startTime)
+        self.startTime = time.time()
 
     def removeFromToDraw(self):
-        pass
+        if self.startTime < time.time() + 5.0:
+            self.game.toDraw.remove(self)

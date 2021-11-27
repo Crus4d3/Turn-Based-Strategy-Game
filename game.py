@@ -1,5 +1,7 @@
 import pygame
 
+from infoBox import InfoBox
+
 class Game:
     def __init__(self, window, assets):
         self.window = window
@@ -16,11 +18,17 @@ class Game:
             if event.type == pygame.QUIT:
                 quit()
 
+    def removeInfoBox(self):
+        for item in self.toDraw:
+            if isinstance(item, InfoBox):
+                item.removeFromToDraw()
+
     def main(self):
         self.takeInputs()
         self.mouseClick.moveToMouseClick()
         self.mouseClick.itemsClicked(self.toDraw)
         self.window.drawFrame(self)
+        self.removeInfoBox()
 
     def mainMenu(self):
         pygame.mouse.set_visible(True)

@@ -7,7 +7,6 @@ class MouseClick(GameObject):
         super().__init__(x, y, width, height, assets.RedCircleImage, game)
         self.x = int(self.x - self.width/2)
         self.y = int(self.y - self.height/2)
-        self.mask = pygame.mask.from_surface(self.image)
 
     def moveToMouseClick(self):
         if pygame.mouse.get_pressed()[0]:
