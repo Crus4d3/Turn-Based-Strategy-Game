@@ -1,5 +1,6 @@
 import pygame
 import time
+import logging
 
 from gameObject import GameObject
 from infoBox import InfoBox
@@ -19,5 +20,7 @@ class MenuIcon(GameObject):
 
     def removeFromToDraw(self):
         if self.temp:
-            if self.startTime < time.time() + 5.0:
+            logging.info("self.game.mouseClick.clicked = {}".format(self.game.mouseClick.clicked))
+            logging.info("self = {}".format(self))
+            if self.game.mouseClick.clicked != self:
                 self.game.toDraw.remove(self)

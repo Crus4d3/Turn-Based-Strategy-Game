@@ -19,3 +19,4 @@ class MouseClick(GameObject):
             overlapY = item.y - self.y
             if self.mask.overlap(item.mask, (overlapX, overlapY)) and type(item) != type(self):
                 item.onClick()
+                self.clicked = item

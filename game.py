@@ -1,7 +1,9 @@
 import pygame
 
+from base import Base
 from infoBox import InfoBox
 from menuIcon import MenuIcon
+from mouseClick import MouseClick
 
 class Game:
     def __init__(self, window, assets):
@@ -24,6 +26,13 @@ class Game:
             if isinstance(item, InfoBox) or isinstance(item, MenuIcon):
                 item.removeFromToDraw()
 
+    def initGame(self):
+        self.mouseClick = MouseClick(-10, -10, 15, 15, self.assets, self)
+        self.base = Base(self.window.width/2, self.window.height/2, 50, 50, self.assets, self)
+        self.menuIcon = MenuIcon(0, self.window.width - 50, 50, 50, self.assets, self, False)
+        self.base.window = self.window
+        self.toDraw = [self.mouseClick, self.base, self.menuIcon]
+
     def main(self):
         self.takeInputs()
         self.mouseClick.moveToMouseClick()
@@ -33,5 +42,6 @@ class Game:
 
     def mainMenu(self):
         pygame.mouse.set_visible(True)
+        self.initGame()
         while self.run:
             self.main()
