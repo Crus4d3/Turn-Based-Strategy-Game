@@ -13,8 +13,8 @@ class MouseClick(GameObject):
             mouseX, mouseY = pygame.mouse.get_pos()
             self.x, self.y = int(mouseX - self.width/2), int(mouseY - self.height/2)
 
-    def itemsClicked(self, toDraw):
-        for item in toDraw:
+    def itemsClicked(self):
+        for item in self.game.toDraw:
             overlapX = item.x - self.x
             overlapY = item.y - self.y
             if self.mask.overlap(item.mask, (overlapX, overlapY)) and type(item) != type(self):

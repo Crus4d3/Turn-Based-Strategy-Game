@@ -21,7 +21,7 @@ class Game:
             if event.type == pygame.QUIT:
                 quit()
 
-    def removeInfoBox(self):
+    def removeObjects(self):
         for item in self.toDraw:
             if isinstance(item, InfoBox) or isinstance(item, MenuIcon):
                 item.removeFromToDraw()
@@ -36,12 +36,13 @@ class Game:
     def main(self):
         self.takeInputs()
         self.mouseClick.moveToMouseClick()
-        self.mouseClick.itemsClicked(self.toDraw)
+        self.mouseClick.itemsClicked()
         self.window.drawFrame(self)
-        self.removeInfoBox()
+        self.removeObjects()
 
     def mainMenu(self):
-        pygame.mouse.set_visible(True)
-        self.initGame()
         while self.run:
-            self.main()
+            pygame.mouse.set_visible(True)
+            self.initGame()
+            while self.lost == False:
+                self.main()
