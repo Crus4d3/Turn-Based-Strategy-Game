@@ -1,6 +1,5 @@
 import pygame
 import time
-import logging
 
 from gameObject import GameObject
 
@@ -20,7 +19,6 @@ class InfoBox(GameObject):
         self.startTime = time.time()
 
     def removeFromToDraw(self):
-        logging.info("self.game.mouseClick.clicked = {}".format(self.game.mouseClick.clicked))
-        logging.info("self = {}".format(self))
+        print("Info box:", self.game.mouseClick.clicked)
         if self.game.mouseClick.clicked != self:
             self.game.toDraw.remove(self)

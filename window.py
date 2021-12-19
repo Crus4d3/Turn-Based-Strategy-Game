@@ -5,11 +5,19 @@ class Window():
         #Setting up window
         self.width = 1000
         self.height = 1000
-        self.WINDOW = pygame.display.set_mode((self.width, self.height))
+        self.window = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Turn based strategy game")
 
     def drawFrame(self, game):
-        self.WINDOW.blit(game.assets.BGImage, (0,0))
+        self.window.blit(game.assets.BGImage, (0,0))
         for item in game.toDraw:
-            self.WINDOW.blit(item.image, (item.x, item.y))
+            self.window.blit(item.image, (item.x, item.y))
+        pygame.display.update()
+
+    def menuScreen(self, game):
+        self.window.blit(game.assets.BGImage, (0,0))
+        menuText = game.menuFont.render("Press space to play", 1, (255, 255, 255))
+        xpos = self.width/2 - menuText.get_width()/2
+        ypos = self.height/2 - menuText.get_height()/2
+        self.window.blit(menuText, (xpos, ypos))
         pygame.display.update()

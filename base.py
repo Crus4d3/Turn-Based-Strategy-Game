@@ -25,5 +25,5 @@ class Base(GameObject):
             50,
             self.assets,
             self.game,
-            True,
+            False,
         )
